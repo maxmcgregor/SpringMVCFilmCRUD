@@ -7,6 +7,7 @@
 <nav>
 
 		<a href="SearchByID.do">Search film by ID</a>
+		<br>
 		<a href="AddNewFilm.do">Add a new film</a>
 		
 </nav>

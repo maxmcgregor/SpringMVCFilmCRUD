@@ -42,6 +42,7 @@ public class FilmController {
 	  public ModelAndView addFilm() {
 		  ModelAndView mv = new ModelAndView();
 		  Film film = new Film();
+		  //film.set all the objects
 		  Film f = filmDAO.addNewFilm(film);
 		  mv.addObject("film", f);
 		  mv.setViewName("AddNewFilm");
