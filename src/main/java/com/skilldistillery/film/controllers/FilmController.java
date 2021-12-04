@@ -38,8 +38,10 @@ public class FilmController {
 		  return mv;
 	  }
 	  
-	  @RequestMapping(path="AddNewFilm.do", params = {"title", "description", "releaseYear", "languageID", "rentalDuration", "rentalRate", "length", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.POST)
-	  public ModelAndView addFilm(String title, String description, int releaseYear, int languageID, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+	  @RequestMapping(path="AddNewFilm.do", params = {"title", "description", "releaseYear", "languageID", "rentalDuration", "rentalRate", 
+			  "length", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.POST)
+	  public ModelAndView addFilm(String title, String description, int releaseYear, int languageID, int rentalDuration, double rentalRate, 
+			  int length, double replacementCost, String rating, String specialFeatures) {
 		  ModelAndView mv = new ModelAndView();
 		  Film film = new Film();
 		  //film.set all the objects
