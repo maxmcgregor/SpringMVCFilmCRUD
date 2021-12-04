@@ -7,7 +7,10 @@
 <title>Spring MVC Film Site</title>
 </head>
 <body>
-	<h1>Filmbuster</h1>
-	${TEST}
+	<h1>Welcome to Filmbuster!</h1>
+	
+	<a href="SearchByID.jsp">Search film by ID</a>
+	
+	<!-- searchById = name of other jsp -->
 </body>
 </html>
