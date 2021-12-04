@@ -43,6 +43,16 @@ public class FilmController {
 		  ModelAndView mv = new ModelAndView();
 		  Film film = new Film();
 		  //film.set all the objects
+		  film.setTitle(title);
+		  film.setDescription(description);
+		  film.setReleaseYear(releaseYear);
+		  film.setLanguageId(languageID);
+		  film.setRentalDuration(rentalDuration);
+		  film.setRentalRate(rentalRate);
+		  film.setLength(length);
+		  film.setReplacementCost(replacementCost);
+		  film.setRating(rating);
+		  film.setSpecialFeatures(specialFeatures);
 		  Film f = filmDAO.addNewFilm(film);
 		  mv.addObject("film", f);
 		  mv.setViewName("AddNewFilm");
