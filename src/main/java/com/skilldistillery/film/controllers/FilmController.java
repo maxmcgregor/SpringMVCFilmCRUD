@@ -37,4 +37,14 @@ public class FilmController {
 		  mv.setViewName("SearchByID");
 		  return mv;
 	  }
+	  
+	  @RequestMapping(path="AddNewFilm.do", params = "", method = RequestMethod.POST)
+	  public ModelAndView addFilm() {
+		  ModelAndView mv = new ModelAndView();
+		  Film film = new Film();
+		  Film f = filmDAO.addNewFilm(film);
+		  mv.addObject("film", f);
+		  mv.setViewName("AddNewFilm");
+		  return mv;
+	  }
 }
