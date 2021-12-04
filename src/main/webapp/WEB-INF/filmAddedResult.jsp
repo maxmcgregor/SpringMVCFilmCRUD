@@ -25,11 +25,15 @@
         <li>Special Features: ${film.specialFeatures}</li>
       </ul>
       
-      	<a href="home.do">Return Home</a>
+      <a href="home.do">Delete Film</a>
+      
+      <a href="home.do">Return Home</a>
+      
+      
       
     </c:when>
     <c:otherwise>
-      <p>No film found :(</p>
+      <p>Oh no! Something happened & your film wasn't added :(</p>
     </c:otherwise>
   </c:choose>
 
