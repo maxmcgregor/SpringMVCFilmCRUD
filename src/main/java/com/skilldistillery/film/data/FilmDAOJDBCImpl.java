@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Scanner;
 
 import org.springframework.stereotype.Service;
 
@@ -123,7 +122,6 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	
 	public Film updateFilm(Film film) {
 		Connection conn = null;
-		
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false);
@@ -144,7 +142,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			stmt.setInt(11, film.getId());
 
 			int update = stmt.executeUpdate();
-			ResultSet keys = stmt.getGeneratedKeys();
+//			ResultSet keys = stmt.getGeneratedKeys();
 
 			if (update == 1) {
 //				System.out.println("Film " + film.getTitle() + " successfully deleted");
@@ -160,7 +158,46 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			e.printStackTrace();
 		}
 		return film;
-		
+		}
+	
+	@Override
+	public boolean deleteFilm(Film film) {
+		Connection conn = null;
+		try {
+			String sql = "DELETE FROM film_category WHERE film_id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			int updateCount = stmt.executeUpdate();
+			
+			sql = "DELETE FROM film_actor WHERE film_id = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			updateCount = stmt.executeUpdate();
+			
+			sql = "DELETE FROM inventory_item WHERE film_id = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			updateCount = stmt.executeUpdate();
+			
+			sql = "DELETE FROM film WHERE id = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			updateCount = stmt.executeUpdate();
+			
+			conn.commit();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} catch (SQLException e2) {
+					System.err.println("Error trying to rollback.");
+				}
+			}
+			return false;
+		}
+		return true;
 	}
 	
 }

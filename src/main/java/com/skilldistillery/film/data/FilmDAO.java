@@ -9,4 +9,7 @@ public interface FilmDAO {
 	public Film addNewFilm(Film film);
 
 	public Film updateFilm(Film film);
+	
+	boolean deleteFilm(Film film);
+
 }
