@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>Add a new film to Filmbuster</h3>
-<form action="AddNewFilm.do" method="POST">
+<form action="AddNewFilmFormInfo.do" method="GET">
 Title:
 <input type="text" name="title" size="4"/>
 Description:

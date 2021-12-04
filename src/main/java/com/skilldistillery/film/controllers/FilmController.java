@@ -38,7 +38,14 @@ public class FilmController {
 		  return mv;
 	  }
 	  
-	  @RequestMapping(path="AddNewFilm.do", params = {"title", "description", "releaseYear", "languageID", "rentalDuration", "rentalRate", "length", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.POST)
+	  @RequestMapping(path="AddNewFilm.do", method = RequestMethod.GET)
+	  public ModelAndView AddNewFilmForm() {
+		  ModelAndView mv = new ModelAndView();
+		  mv.setViewName("AddNewFilm");
+		  return mv;
+	  }
+	  
+	  @RequestMapping(path="AddNewFilmFormInfo.do", params = {"title", "description", "releaseYear", "languageID", "rentalDuration", "rentalRate", "length", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.GET)
 	  public ModelAndView addFilm(String title, String description, int releaseYear, int languageID, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
 		  ModelAndView mv = new ModelAndView();
 		  Film film = new Film();
@@ -55,7 +62,7 @@ public class FilmController {
 		  film.setSpecialFeatures(specialFeatures);
 		  Film f = filmDAO.addNewFilm(film);
 		  mv.addObject("film", f);
-		  mv.setViewName("AddNewFilm");
+		  mv.setViewName("result");
 		  return mv;
 	  }
 }

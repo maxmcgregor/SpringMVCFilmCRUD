@@ -65,13 +65,11 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	@Override
 	public Film addNewFilm(Film film) {
 		Connection conn = null;
-		String user = "student";
-		String pass = "student";
 		try {
 			conn = DriverManager.getConnection(URL, user, pass);
 			conn.setAutoCommit(false);
 
-			String sql = "INSERT INTO film (title, description, release_year, language_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO film (title, description, release_year, langauge_id, rental_duration, rental_rate, length, replacement_cost, rating, special_features) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
@@ -95,13 +93,13 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				ResultSet rs = stmt2.executeQuery();
 				if (rs.next()) {
 					film.setId(rs.getInt("id"));
-//					film.setLanguageId(rs.getInt("language_id"));
-//					film.setRentalDuration(rs.getInt("rental_duration"));
-//					film.setRentalRate(rs.getDouble("rental_rate"));
-//					film.setLength(rs.getInt("length"));
-//					film.setReplacementCost(rs.getDouble("replacement_cost"));
-//					film.setRating(rs.getString("rating"));
-//					film.setSpecialFeatures(rs.getString("special_features"));
+					film.setLanguageId(rs.getInt("language_id"));
+					film.setRentalDuration(rs.getInt("rental_duration"));
+					film.setRentalRate(rs.getDouble("rental_rate"));
+					film.setLength(rs.getInt("length"));
+					film.setReplacementCost(rs.getDouble("replacement_cost"));
+					film.setRating(rs.getString("rating"));
+					film.setSpecialFeatures(rs.getString("special_features"));
 
 					rs.close();
 				}
