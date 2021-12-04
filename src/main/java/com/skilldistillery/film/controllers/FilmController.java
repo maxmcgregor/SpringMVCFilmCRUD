@@ -65,4 +65,19 @@ public class FilmController {
 		  mv.setViewName("filmAddedResult");
 		  return mv;
 	  }
+	  
+	  @RequestMapping(path="delete.do", params="filmId", method = RequestMethod.GET)
+	  public ModelAndView deleteFilm(int filmId) {
+		  ModelAndView mv = new ModelAndView();
+		  Film f = filmDAO.findFilmById(filmId);
+		  
+		  if (filmId > 1000) {
+			  filmDAO.deleteFilm(f);
+			  mv.setViewName("deleteSuccess");
+		  } else {
+			  mv.setViewName("deleteFailure");
+		  }
+		  
+		  return mv;
+	  }
 }

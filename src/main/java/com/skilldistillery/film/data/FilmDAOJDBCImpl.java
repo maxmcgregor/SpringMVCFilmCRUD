@@ -120,4 +120,47 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 	}
 	
+	@Override
+	public boolean deleteFilm(Film film) {
+		Connection conn = null;
+		
+		try {
+			conn = DriverManager.getConnection(URL, user, pass);
+			conn.setAutoCommit(false);
+			String sql = "DELETE FROM film_category WHERE film_id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			int updateCount = stmt.executeUpdate();
+			
+			sql = "DELETE FROM film_actor WHERE film_id = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			updateCount = stmt.executeUpdate();
+			
+			sql = "DELETE FROM inventory_item WHERE film_id = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			updateCount = stmt.executeUpdate();
+			
+			sql = "DELETE FROM film WHERE id = ?";
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, film.getId());
+			updateCount = stmt.executeUpdate();
+			
+			conn.commit();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			if (conn != null) {
+				try {
+					conn.rollback();
+				} catch (SQLException e2) {
+					System.err.println("Error trying to rollback.");
+				}
+			}
+			return false;
+		}
+		return true;
+	}
+	
 }

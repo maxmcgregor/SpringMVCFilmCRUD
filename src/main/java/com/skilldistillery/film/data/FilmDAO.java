@@ -8,4 +8,6 @@ public interface FilmDAO {
 
 	Film addNewFilm(Film film);
 
+	boolean deleteFilm(Film film);
+
 }
