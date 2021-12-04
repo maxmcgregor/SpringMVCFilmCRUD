@@ -28,7 +28,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 	@Override
 	public Film findFilmById(int filmId) {
-		Film film = null;
+		Film film = new Film();
 
 		try {
 			Connection conn = DriverManager.getConnection(URL, user, pass);
@@ -37,7 +37,6 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			stmt.setInt(1, filmId);
 			ResultSet filmResult = stmt.executeQuery();
 			if (filmResult.next()) {
-				film = new Film();
 				film.setId(filmResult.getInt("id"));
 				film.setTitle(filmResult.getString("title"));
 				film.setDescription(filmResult.getString("description"));
@@ -50,6 +49,8 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setRating(filmResult.getString("rating"));
 				film.setSpecialFeatures(filmResult.getString("special_features"));
 //				film.setActors(findActorsByFilmId(filmId));
+			} else {
+				return null;
 			}
 			filmResult.close();
 			stmt.close();
