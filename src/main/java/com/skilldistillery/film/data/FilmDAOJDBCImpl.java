@@ -19,7 +19,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 	static {
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			System.err.println("Error loading mysql driver!");
 			e.printStackTrace();
