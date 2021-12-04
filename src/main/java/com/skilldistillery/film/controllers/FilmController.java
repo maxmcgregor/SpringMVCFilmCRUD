@@ -38,7 +38,6 @@ public class FilmController {
 		  return mv;
 	  }
 	  
-
 	  @RequestMapping(path="AddNewFilm.do", method = RequestMethod.GET)
 	  public ModelAndView AddNewFilmForm() {
 		  ModelAndView mv = new ModelAndView();
