@@ -8,11 +8,8 @@
 </head>
 <body>
 <h3>Add a new film to Filmbuster</h3>
-<<<<<<< HEAD
+
 <form action="AddNewFilmFormInfo.do" method="GET">
-=======
-<form action="AddNewFilmFormInfo.do" method="POST">
->>>>>>> 43ac80ca91306a8e4b7a50fa36139f68d009071b
 Title:
 <input type="text" name="title" size="4"/>
 <br>Description:
