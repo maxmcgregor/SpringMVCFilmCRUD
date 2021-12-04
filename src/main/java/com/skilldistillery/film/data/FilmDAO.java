@@ -6,4 +6,6 @@ public interface FilmDAO {
 
 	public Film findFilmById(int filmId);
 
+	Film addNewFilm(Film film);
+
 }
