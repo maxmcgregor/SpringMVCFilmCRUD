@@ -38,6 +38,7 @@ public class FilmController {
 		  return mv;
 	  }
 	  
+<<<<<<< HEAD
 	  @RequestMapping(path="AddNewFilm.do", method = RequestMethod.GET)
 	  public ModelAndView AddNewFilmForm() {
 		  ModelAndView mv = new ModelAndView();
@@ -47,6 +48,12 @@ public class FilmController {
 	  
 	  @RequestMapping(path="AddNewFilmFormInfo.do", params = {"title", "description", "releaseYear", "languageID", "rentalDuration", "rentalRate", "length", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.GET)
 	  public ModelAndView addFilm(String title, String description, int releaseYear, int languageID, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+=======
+	  @RequestMapping(path="AddNewFilm.do", params = {"title", "description", "releaseYear", "languageID", "rentalDuration", "rentalRate", 
+			  "length", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.POST)
+	  public ModelAndView addFilm(String title, String description, int releaseYear, int languageID, int rentalDuration, double rentalRate, 
+			  int length, double replacementCost, String rating, String specialFeatures) {
+>>>>>>> 43ac80ca91306a8e4b7a50fa36139f68d009071b
 		  ModelAndView mv = new ModelAndView();
 		  Film film = new Film();
 		  //film.set all the objects

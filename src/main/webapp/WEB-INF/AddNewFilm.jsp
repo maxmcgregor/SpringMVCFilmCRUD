@@ -8,28 +8,32 @@
 </head>
 <body>
 <h3>Add a new film to Filmbuster</h3>
+<<<<<<< HEAD
 <form action="AddNewFilmFormInfo.do" method="GET">
+=======
+<form action="AddNewFilmFormInfo.do" method="POST">
+>>>>>>> 43ac80ca91306a8e4b7a50fa36139f68d009071b
 Title:
 <input type="text" name="title" size="4"/>
-Description:
+<br>Description:
 <input type="text" name="description" size="4"/>
-Release Year:
+<br>Release Year:
 <input type="text" name="releaseYear" size="4"/>
-Language ID:
+<br>Language ID:
 <input type="text" name="languageID" size="4"/>
-Rental Duration:
+<br>Rental Duration:
 <input type="text" name="rentalDuration" size="4"/>
-Rental Rate:
+<br>Rental Rate:
 <input type="text" name="rentalRate" size="4"/>
-Length:
+<br>Length:
 <input type="text" name="length" size="4"/>
-Replacement Cost:
+<br>Replacement Cost:
 <input type="text" name="replacementCost" size="4"/>
-Rating:
+<br>Rating:
 <input type="text" name="rating" size="4"/>
-Special Features:
+<br>Special Features:
 <input type="text" name="specialFeatures" size="4"/>
-
+<br>
 <input type="submit" value="Submit Film to Database"/>
 
 </form>
