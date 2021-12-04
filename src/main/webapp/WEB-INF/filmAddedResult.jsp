@@ -17,7 +17,7 @@
         <li>Title: ${film.title}</li>
         <li>${film.description}</li>
         <li>Released: ${film.releaseYear}</li>
-        <li>Language ID: ${film.languageID}</li>
+        <li>Language ID: ${film.languageId}</li>
         <li>Rental Duration: ${film.rentalDuration}</li>
         <li>Length: ${film.length}</li>
         <li>Replacement Cost: ${film.replacementCost}</li>

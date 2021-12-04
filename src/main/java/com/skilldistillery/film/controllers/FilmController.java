@@ -45,15 +45,15 @@ public class FilmController {
 		  return mv;
 	  }
 	  
-	  @RequestMapping(path="AddNewFilmFormInfo.do", params = {"title", "description", "releaseYear", "languageID", "rentalDuration", "rentalRate", "length", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.GET)
-	  public ModelAndView addFilm(String title, String description, int releaseYear, int languageID, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+	  @RequestMapping(path="AddNewFilmFormInfo.do", params = {"title", "description", "releaseYear", "languageId", "rentalDuration", "rentalRate", "length", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.GET)
+	  public ModelAndView addFilm(String title, String description, int releaseYear, int languageId, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
 		  ModelAndView mv = new ModelAndView();
 		  Film film = new Film();
 		  //film.set all the objects
 		  film.setTitle(title);
 		  film.setDescription(description);
 		  film.setReleaseYear(releaseYear);
-		  film.setLanguageId(languageID);
+		  film.setLanguageId(languageId);
 		  film.setRentalDuration(rentalDuration);
 		  film.setRentalRate(rentalRate);
 		  film.setLength(length);
@@ -63,6 +63,43 @@ public class FilmController {
 		  Film f = filmDAO.addNewFilm(film);
 		  mv.addObject("film", f);
 		  mv.setViewName("filmAddedResult");
+		  return mv;
+	  }
+	  
+	  @RequestMapping(path="SearchByIdToEdit.do", method = RequestMethod.GET)
+	  public ModelAndView searchByIdToEdit() {
+		  ModelAndView mv = new ModelAndView();
+		  mv.setViewName("SearchByIdToEdit");
+		  return mv;
+	  }
+	  
+	  @RequestMapping(path = "SearchFilmToEdit.do", params = "filmId", method = RequestMethod.GET)
+	  public ModelAndView getFilmInfoToEdit(Integer filmId) {
+	    ModelAndView mv = new ModelAndView();  
+	    Film f = filmDAO.findFilmById(filmId);
+	    mv.addObject("film", f);
+	    mv.setViewName("editFilm");
+	    return mv;
+	  }
+	  
+	  @RequestMapping(path = "UpdateInfo.do", params = {"title", "description", "releaseYear", "languageId", "rentalDuration", "length", "rentalDuration", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.GET)
+	  public ModelAndView editFilm(String title, String description, int releaseYear, int languageId, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+		  ModelAndView mv = new ModelAndView();  
+		  Film film = new Film();
+		  //film.set all the objects
+		  film.setTitle(title);
+		  film.setDescription(description);
+		  film.setReleaseYear(releaseYear);
+		  film.setLanguageId(languageId);
+		  film.setRentalDuration(rentalDuration);
+		  film.setRentalRate(rentalRate);
+		  film.setLength(length);
+		  film.setReplacementCost(replacementCost);
+		  film.setRating(rating);
+		  film.setSpecialFeatures(specialFeatures);
+		  Film f = filmDAO.updateFilm(film);
+		  mv.addObject("film", f);
+		  mv.setViewName("result");
 		  return mv;
 	  }
 }

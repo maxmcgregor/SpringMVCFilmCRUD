@@ -17,7 +17,7 @@ Title:
 <br>Release Year:
 <input type="text" name="releaseYear" size="4"/>
 <br>Language ID:
-<input type="text" name="languageID" size="4"/>
+<input type="text" name="languageId" size="4"/>
 <br>Rental Duration:
 <input type="text" name="rentalDuration" size="4"/>
 <br>Rental Rate:

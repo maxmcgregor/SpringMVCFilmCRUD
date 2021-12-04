@@ -10,6 +10,7 @@
 </head>
 <body>
 
+		<label for="id">ID: ${film.id}</label> <br>
 	<form action="UpdateInfo.do" method="GET">
 		<label for="title">Title: </label> <input type="text" name="title" value="${film.title}"><br>
 		<label for="description">Description: </label> <input type="text" name="description" value="${film.description}"><br>
