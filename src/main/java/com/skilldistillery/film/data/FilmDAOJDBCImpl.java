@@ -127,7 +127,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			conn.setAutoCommit(false);
 
 			String sql = "UPDATE film SET title = ?, description = ?, release_year = ?, language_id = ?, rental_duration = ?, rental_rate = ?, "
-					+ "length = ?, replacement_cost = ?, rating = ?, special_features = ? WHERE film_id = ?";
+					+ "length = ?, replacement_cost = ?, rating = ?, special_features = ? WHERE id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
