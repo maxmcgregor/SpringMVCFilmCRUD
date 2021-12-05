@@ -98,8 +98,8 @@ public class FilmController {
 		  film.setRating(rating);
 		  film.setSpecialFeatures(specialFeatures);
 		  Film f = filmDAO.updateFilm(film);
-		  filmDAO.updateFilm(f);
 		  mv.addObject("film", f);
+		  filmDAO.updateFilm(f);
 		  mv.setViewName("result");
 		  return mv;
 	  }
@@ -108,7 +108,7 @@ public class FilmController {
 		  ModelAndView mv = new ModelAndView();
 		  Film f = filmDAO.findFilmById(filmId);
 		  
-		  if (filmId > 1000) {
+		  if (filmId > 1000 && f != null) {
 			  filmDAO.deleteFilm(f);
 			  mv.setViewName("deleteSuccess");
 		  } else {

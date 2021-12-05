@@ -27,6 +27,7 @@
 
 			<a href="home.do">Return Home</a>
 			<br><br>
+			
 			<form action="delete.do" method="GET">
 				<label for="filmId">Film ID: </label><input type="text" name="filmId" value="${film.id}">
 				<input type="submit" value="Delete this film">
