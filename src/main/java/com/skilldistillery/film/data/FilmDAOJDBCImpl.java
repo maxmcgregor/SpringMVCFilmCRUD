@@ -6,10 +6,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.film.entities.Film;
+
 
 @Service
 public class FilmDAOJDBCImpl implements FilmDAO {
@@ -201,6 +204,52 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			return false;
 		}
 		return true;
+	}
+	
+	@Override
+	public List<Film> findFilmsByKeyword(String keyword) {
+		List<Film> films = new ArrayList<>();
+
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			String sql = "SELECT * FROM film WHERE title LIKE ? OR description LIKE ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" + keyword + "%");
+			stmt.setString(2, "%" + keyword + "%");
+			ResultSet filmResult = stmt.executeQuery();
+
+			while (filmResult.next()) {
+				int filmId = filmResult.getInt("id");
+				String title = filmResult.getString("title");
+				String description = filmResult.getString("description");
+				int releaseYear = filmResult.getInt("release_year");
+				int languageId = filmResult.getInt("language_id");
+				int rentalDuration = filmResult.getInt("rental_duration");
+				double rentalRate = filmResult.getDouble("rental_rate");
+				int length = filmResult.getInt("length");
+				double replacementCost = filmResult.getDouble("replacement_cost");
+				String rating = filmResult.getString("rating");
+				String specialFeatures = filmResult.getString("special_features");
+//				List<Actor> actors = findActorsByFilmId(filmId);
+
+//				Film film = new Film(actors, filmId, title, description, releaseYear, languageId, rentalDuration,
+//						rentalRate, length, replacementCost, rating, specialFeatures);
+				Film film = new Film(filmId, title, description, releaseYear, languageId, rentalDuration,
+						rentalRate, length, replacementCost, rating, specialFeatures);
+				
+				
+				
+
+				films.add(film);
+			}
+
+			filmResult.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return films;
 	}
 	
 }

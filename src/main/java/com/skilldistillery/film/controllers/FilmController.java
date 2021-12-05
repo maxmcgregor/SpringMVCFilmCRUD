@@ -1,5 +1,8 @@
 package com.skilldistillery.film.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -119,6 +122,25 @@ public class FilmController {
 		  } else {
 			  mv.setViewName("deleteFailure");
 		  }
+		  
+		  return mv;
+	  }
+	  
+	  @RequestMapping(path="SearchByKeyword.do", method = RequestMethod.GET)
+	  public ModelAndView searchFilmByKeywordForm() {
+		  ModelAndView mv = new ModelAndView();
+		  mv.setViewName("SearchByKeyword");
+		  return mv;
+	  }
+	  
+	  @RequestMapping(path="keywordSearch.do", params="keyword", method=RequestMethod.GET) 
+	  public ModelAndView searchFilmByKeyword(String keyword) {
+		  ModelAndView mv = new ModelAndView();
+		  List<Film> films = new ArrayList<>();
+		  films = filmDAO.findFilmsByKeyword(keyword);
+		  
+		  mv.addObject("listOfFilms", films);
+		  mv.setViewName("ResultsList"); //get view name from Ian
 		  
 		  return mv;
 	  }

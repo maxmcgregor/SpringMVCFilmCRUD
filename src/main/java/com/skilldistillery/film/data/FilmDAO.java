@@ -1,5 +1,7 @@
 package com.skilldistillery.film.data;
 
+import java.util.List;
+
 import com.skilldistillery.film.entities.Film;
 
 public interface FilmDAO {
@@ -11,5 +13,7 @@ public interface FilmDAO {
 	public Film updateFilm(Film film);
 	
 	boolean deleteFilm(Film film);
+
+	List<Film> findFilmsByKeyword(String keyword);
 
 }
