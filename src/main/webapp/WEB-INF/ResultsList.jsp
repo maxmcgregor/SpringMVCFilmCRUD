@@ -12,27 +12,36 @@
 
 	<c:choose>
 		<c:when test="${! empty filmList}">
-		<c:forEach var="films" items= "${filmList }">
-			<ul>
-				<li>Film ID: ${films.id}</li>
-				<li>Title: ${films.title}</li>
-				<li>${films.description}</li>
-				<li>Released: ${films.releaseYear}</li>
-				<li>Language ID: ${films.languageId}</li>
-				<li>Rental Duration: ${films.rentalDuration}</li>
-				<li>Length: ${films.length}</li>
-				<li>Replacement Cost: ${films.replacementCost}</li>
-				<li>Rating: ${films.rating}</li>
-				<li>Special Features: ${films.specialFeatures}</li>
-			</ul>
+			<c:forEach var="films" items="${filmList }">
+				<ul>
+					<li>Film ID: ${films.id}</li>
+					<li>Title: ${films.title}</li>
+					<li>${films.description}</li>
+					<li>Released: ${films.releaseYear}</li>
+					<li>Language ID: ${films.languageId}</li>
+					<li>Rental Duration: ${films.rentalDuration}</li>
+					<li>Length: ${films.length}</li>
+					<li>Replacement Cost: ${films.replacementCost}</li>
+					<li>Rating: ${films.rating}</li>
+					<li>Special Features: ${films.specialFeatures}</li>
+					<li>Categories: ${film.categories}</li>
+					<li>Actors:</li>
+					<li><ol>
+						<c:forEach var="actor" items="${films.actors }">
+							<li>Actors: ${actor.firstName} ${actor.lastName }</li>
+						</c:forEach>
+					</ol></li>
+				</ul>
 			</c:forEach>
 
 			<a href="home.do">Return Home</a>
-			<br><br>
-			
+			<br>
+			<br>
+
 			<form action="delete.do" method="GET">
-				<label for="filmId">Film ID: </label><input type="text" name="filmId" value="${film.id}">
-				<input type="submit" value="Delete this film">
+				<label for="filmId">Film ID: </label><input type="text"
+					name="filmId" value="${film.id}"> <input type="submit"
+					value="Delete this film">
 			</form>
 		</c:when>
 		<c:otherwise>
