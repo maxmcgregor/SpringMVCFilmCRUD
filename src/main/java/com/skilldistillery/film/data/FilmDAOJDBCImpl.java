@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
 
@@ -52,7 +53,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setReplacementCost(filmResult.getDouble("replacement_cost"));
 				film.setRating(filmResult.getString("rating"));
 				film.setSpecialFeatures(filmResult.getString("special_features"));
-//				film.setActors(findActorsByFilmId(filmId));
+				film.setActors(findActorsByFilmId(filmId));
 			} else {
 				return null;
 			}
@@ -230,12 +231,12 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				double replacementCost = filmResult.getDouble("replacement_cost");
 				String rating = filmResult.getString("rating");
 				String specialFeatures = filmResult.getString("special_features");
-//				List<Actor> actors = findActorsByFilmId(filmId);
+				List<Actor> actors = findActorsByFilmId(filmId);
 
-//				Film film = new Film(actors, filmId, title, description, releaseYear, languageId, rentalDuration,
-//						rentalRate, length, replacementCost, rating, specialFeatures);
-				Film film = new Film(filmId, title, description, releaseYear, languageId, rentalDuration,
+				Film film = new Film(actors, filmId, title, description, releaseYear, languageId, rentalDuration,
 						rentalRate, length, replacementCost, rating, specialFeatures);
+//				Film film = new Film(filmId, title, description, releaseYear, languageId, rentalDuration,
+//						rentalRate, length, replacementCost, rating, specialFeatures);
 				
 				
 				
@@ -250,6 +251,35 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			e.printStackTrace();
 		}
 		return films;
+	}
+	
+	@Override
+	public List<Actor> findActorsByFilmId(int filmId) {
+		List<Actor> actors = new ArrayList<>();
+
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			String sql = "SELECT * FROM actor JOIN film_actor ON actor.id = film_actor.actor_id WHERE film_id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				int actorId = rs.getInt("id");
+				String firstName = rs.getString("first_name");
+				String lastName = rs.getString("last_name");
+
+				Actor actor = new Actor(actorId, firstName, lastName);
+				actors.add(actor);
+
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return actors;
 	}
 	
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class Film {
-//		private List<Actor> actors;
+	private List<Actor> actors;
 	private int id;
 	private String title;
 	private String description;
@@ -16,42 +16,53 @@ public class Film {
 	private double replacementCost;
 	private String rating;
 	private String specialFeatures;
+	private String categories;
 
 	public Film() {
 
 	}
 
-//		public Film(List<Actor> actors, int id, String title, String description, int releaseYear, int languageId,
-//				int rentalDuration, double rentalRate, int length, double replacementCost, String rating,
-//				String specialFeatures) {
-//			super();
-//			this.actors = actors;
-//			this.id = id;
-//			this.title = title;
-//			this.description = description;
-//			this.releaseYear = releaseYear;
-//			this.languageId = languageId;
-//			this.rentalDuration = rentalDuration;
-//			this.rentalRate = rentalRate;
-//			this.length = length;
-//			this.replacementCost = replacementCost;
-//			this.rating = rating;
-//			this.specialFeatures = specialFeatures;
-//		}
-//
-//		public List<Actor> getActors() {
-//			return actors;
-//		}
-//
-//		public void setActors(List<Actor> actors) {
-//			this.actors = actors;
-//		}
+		public Film(List<Actor> actors, int id, String title, String description, int releaseYear, int languageId,
+				int rentalDuration, double rentalRate, int length, double replacementCost, String rating,
+				String specialFeatures, String categories) {
+			super();
+			this.actors = actors;
+			this.id = id;
+			this.title = title;
+			this.description = description;
+			this.releaseYear = releaseYear;
+			this.languageId = languageId;
+			this.rentalDuration = rentalDuration;
+			this.rentalRate = rentalRate;
+			this.length = length;
+			this.replacementCost = replacementCost;
+			this.rating = rating;
+			this.specialFeatures = specialFeatures;
+			this.categories = categories;
+		}
+		
+public String getCategories() {
+			return categories;
+		}
 
-	public Film(int id, String title, String description, int releaseYear, int languageId,
+		public void setCategories(String categories) {
+			this.categories = categories;
+		}
+
+		//
+		public List<Actor> getActors() {
+			return actors;
+		}
+
+		public void setActors(List<Actor> actors) {
+			this.actors = actors;
+		}
+
+	public Film(List<Actor> actors, int id, String title, String description, int releaseYear, int languageId,
 			int rentalDuration, double rentalRate, int length, double replacementCost, String rating,
 			String specialFeatures) {
 		super();
-		
+		this.actors = actors;
 		this.id = id;
 		this.title = title;
 		this.description = description;
@@ -158,10 +169,10 @@ public class Film {
 
 	@Override
 	public String toString() {
-		return "Film [id=" + id + ", title=" + title + ", description=" + description + ", releaseYear=" + releaseYear
-				+ ", languageId=" + languageId + ", rentalDuration=" + rentalDuration + ", rentalRate=" + rentalRate
-				+ ", length=" + length + ", replacementCost=" + replacementCost + ", rating=" + rating
-				+ ", specialFeatures=" + specialFeatures + "]";
+		return "Film [actors=" + actors + ", id=" + id + ", title=" + title + ", description=" + description
+				+ ", releaseYear=" + releaseYear + ", languageId=" + languageId + ", rentalDuration=" + rentalDuration
+				+ ", rentalRate=" + rentalRate + ", length=" + length + ", replacementCost=" + replacementCost
+				+ ", rating=" + rating + ", specialFeatures=" + specialFeatures + ", categories=" + categories + "]";
 	}
 
 //		@Override
