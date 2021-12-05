@@ -37,6 +37,8 @@
 		</c:when>
 		<c:otherwise>
 			<p>Oh no! Something happened & your film wasn't added :(</p>
+						<a href="home.do">Return Home</a>
+			
 		</c:otherwise>
 	</c:choose>
 

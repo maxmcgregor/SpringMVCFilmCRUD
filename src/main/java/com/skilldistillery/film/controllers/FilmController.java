@@ -62,7 +62,11 @@ public class FilmController {
 		  film.setSpecialFeatures(specialFeatures);
 		  Film f = filmDAO.addNewFilm(film);
 		  mv.addObject("film", f);
-		  mv.setViewName("filmAddedResult");
+//		  if (f != null) {
+			  mv.setViewName("filmAddedResult");			  
+//		  } else {
+//			  mv.setViewName("home");
+//		  }
 		  return mv;
 	  }
 	  
