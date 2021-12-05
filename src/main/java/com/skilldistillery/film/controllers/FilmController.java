@@ -139,7 +139,7 @@ public class FilmController {
 		  List<Film> films = new ArrayList<>();
 		  films = filmDAO.findFilmsByKeyword(keyword);
 		  
-		  mv.addObject("listOfFilms", films);
+		  mv.addObject("filmList", films);
 		  mv.setViewName("ResultsList"); //get view name from Ian
 		  
 		  return mv;
