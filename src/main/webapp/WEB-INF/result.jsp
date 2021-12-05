@@ -34,7 +34,7 @@
 			</form>
 		</c:when>
 		<c:otherwise>
-			<p>No film found :(</p>
+			<p>Oh no! That didn't work :(</p>
 			<a href="home.do">Return Home</a>
 		</c:otherwise>
 	</c:choose>

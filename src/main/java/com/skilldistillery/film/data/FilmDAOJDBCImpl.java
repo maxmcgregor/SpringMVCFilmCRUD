@@ -157,6 +157,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 		} catch (SQLException e) {
 			e.printStackTrace();
+			film = null;
 		}
 		return film;
 		}
