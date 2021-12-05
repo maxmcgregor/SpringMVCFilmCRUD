@@ -82,11 +82,11 @@ public class FilmController {
 	    return mv;
 	  }
 	  
-	  @RequestMapping(path = "UpdateInfo.do", params = {"title", "description", "releaseYear", "languageId", "rentalDuration", "length", "rentalDuration", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.GET)
-	  public ModelAndView editFilm(String title, String description, int releaseYear, int languageId, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
+	  @RequestMapping(path = "UpdateInfo.do", params = {"id", "title", "description", "releaseYear", "languageId", "rentalDuration", "rentalRate", "length", "replacementCost", "rating", "specialFeatures"}, method = RequestMethod.POST)
+	  public ModelAndView editFilm(int id, String title, String description, int releaseYear, int languageId, int rentalDuration, double rentalRate, int length, double replacementCost, String rating, String specialFeatures) {
 		  ModelAndView mv = new ModelAndView();  
 		  Film film = new Film();
-		  //film.set all the objects
+		  film.setId(id);
 		  film.setTitle(title);
 		  film.setDescription(description);
 		  film.setReleaseYear(releaseYear);
@@ -98,6 +98,7 @@ public class FilmController {
 		  film.setRating(rating);
 		  film.setSpecialFeatures(specialFeatures);
 		  Film f = filmDAO.updateFilm(film);
+		  filmDAO.updateFilm(f);
 		  mv.addObject("film", f);
 		  mv.setViewName("result");
 		  return mv;

@@ -128,7 +128,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 			String sql = "UPDATE film SET title = ?, description = ?, release_year = ?, language_id = ?, rental_duration = ?, rental_rate = ?, "
 					+ "length = ?, replacement_cost = ?, rating = ?, special_features = ? WHERE film_id = ?";
-			PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setString(1, film.getTitle());
 			stmt.setString(2, film.getDescription());
 			stmt.setInt(3, film.getReleaseYear());
@@ -142,11 +142,11 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			stmt.setInt(11, film.getId());
 
 			int update = stmt.executeUpdate();
+			conn.commit();
 //			ResultSet keys = stmt.getGeneratedKeys();
 
 			if (update == 1) {
 //				System.out.println("Film " + film.getTitle() + " successfully deleted");
-				conn.commit();
 				conn.close();
 			} else {
 				conn.rollback();
@@ -164,6 +164,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 	public boolean deleteFilm(Film film) {
 		Connection conn = null;
 		try {
+			conn = DriverManager.getConnection(URL, user, pass);
 			String sql = "DELETE FROM film_category WHERE film_id = ?";
 			PreparedStatement stmt = conn.prepareStatement(sql);
 			stmt.setInt(1, film.getId());
