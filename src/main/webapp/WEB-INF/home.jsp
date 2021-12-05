@@ -8,6 +8,8 @@
 
 		<a href="SearchByID.do">Search film by ID</a>
 		<br>
+		<a href="SearchByKeyword.do">Search for a film by Keyword</a>
+		<br>
 		<a href="AddNewFilm.do">Add a new film</a>
 		<br>
 		<a href="SearchByIdToEdit.do">Edit a film</a>
