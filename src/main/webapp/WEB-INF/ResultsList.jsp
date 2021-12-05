@@ -12,9 +12,9 @@
 
 	<c:choose>
 		<c:when test="${! empty filmList}">
-		<c:forEach var="films" items= "${pageScope.filmList }">
+		<c:forEach var="films" items= "${filmList }">
 			<ul>
-				<li>Film ID: ${films.Id}</li>
+				<li>Film ID: ${films.id}</li>
 				<li>Title: ${films.title}</li>
 				<li>${films.description}</li>
 				<li>Released: ${films.releaseYear}</li>
