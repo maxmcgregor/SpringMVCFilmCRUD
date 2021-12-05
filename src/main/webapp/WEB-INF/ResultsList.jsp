@@ -12,18 +12,18 @@
 
 	<c:choose>
 		<c:when test="${! empty filmList}">
-		<c:forEach var="film" items= "filmList">
+		<c:forEach var="films" items= "${pageScope.filmList }">
 			<ul>
-				<li>Film ID: ${film.id}</li>
-				<li>Title: ${film.title}</li>
-				<li>${film.description}</li>
-				<li>Released: ${film.releaseYear}</li>
-				<li>Language ID: ${film.languageId}</li>
-				<li>Rental Duration: ${film.rentalDuration}</li>
-				<li>Length: ${film.length}</li>
-				<li>Replacement Cost: ${film.replacementCost}</li>
-				<li>Rating: ${film.rating}</li>
-				<li>Special Features: ${film.specialFeatures}</li>
+				<li>Film ID: ${films.Id}</li>
+				<li>Title: ${films.title}</li>
+				<li>${films.description}</li>
+				<li>Released: ${films.releaseYear}</li>
+				<li>Language ID: ${films.languageId}</li>
+				<li>Rental Duration: ${films.rentalDuration}</li>
+				<li>Length: ${films.length}</li>
+				<li>Replacement Cost: ${films.replacementCost}</li>
+				<li>Rating: ${films.rating}</li>
+				<li>Special Features: ${films.specialFeatures}</li>
 			</ul>
 			</c:forEach>
 
