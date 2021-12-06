@@ -25,14 +25,15 @@
 				<li>Special Features: ${film.specialFeatures}</li>
 				<li>Categories: ${film.categories}</li>
 				<li>Actors:</li>
-				<li><ol>
-						<c:forEach var="actor" items="${films.actors }">
-							<li>Actors: ${actor.firstName} ${actor.lastName }</li>
-						</c:forEach>
-					</ol></li>
+				<ol>
+					<c:forEach var="actor" items="${film.actors }">
+						<li>${actor.firstName}${actor.lastName }</li>
+					</c:forEach>
+				</ol>
 			</ul>
 
 			<a href="home.do">Return Home</a>
+
 			<br>
 			<br>
 
@@ -40,6 +41,14 @@
 				<label for="filmId">Film ID: </label><input type="text"
 					name="filmId" value="${film.id}"> <input type="submit"
 					value="Delete this film">
+			</form>
+			<br>
+			<form action="SearchFilmToEdit.do" method="GET">
+				<label for="filmId">Film ID: </label><input type="text"
+					name="filmId" value="${film.id}"> <input type="submit"
+					value="Edit this film">
+
+
 			</form>
 		</c:when>
 		<c:otherwise>

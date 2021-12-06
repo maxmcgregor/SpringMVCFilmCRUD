@@ -24,24 +24,31 @@
 					<li>Replacement Cost: ${films.replacementCost}</li>
 					<li>Rating: ${films.rating}</li>
 					<li>Special Features: ${films.specialFeatures}</li>
-					<li>Categories: ${film.categories}</li>
+					<li>Categories: ${films.categories}</li>
 					<li>Actors:</li>
-					<li><ol>
+					<ol>
 						<c:forEach var="actor" items="${films.actors }">
-							<li>Actors: ${actor.firstName} ${actor.lastName }</li>
+							<li>${actor.firstName} ${actor.lastName }</li>
 						</c:forEach>
-					</ol></li>
+					</ol>
 				</ul>
 			</c:forEach>
 
 			<a href="home.do">Return Home</a>
 			<br>
 			<br>
-
+			
 			<form action="delete.do" method="GET">
 				<label for="filmId">Film ID: </label><input type="text"
 					name="filmId" value="${film.id}"> <input type="submit"
 					value="Delete this film">
+			</form>
+			<form action="SearchFilmToEdit.do" method="GET">
+				<label for="filmId">Film ID: </label><input type="text"
+					name="filmId" value="${film.id}"> <input type="submit"
+					value="Edit this film">
+
+
 			</form>
 		</c:when>
 		<c:otherwise>

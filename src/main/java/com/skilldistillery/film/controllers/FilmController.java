@@ -105,8 +105,8 @@ public class FilmController {
 		  film.setRating(rating);
 		  film.setSpecialFeatures(specialFeatures);
 		  Film f = filmDAO.updateFilm(film);
-		  mv.addObject("film", f);
 		  filmDAO.updateFilm(f);
+		  mv.addObject("film", f);
 		  mv.setViewName("result");
 		  return mv;
 	  }

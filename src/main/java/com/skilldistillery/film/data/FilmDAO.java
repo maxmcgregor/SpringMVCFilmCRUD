@@ -13,10 +13,12 @@ public interface FilmDAO {
 
 	public Film updateFilm(Film film);
 	
-	boolean deleteFilm(Film film);
+	public boolean deleteFilm(Film film);
 
-	List<Film> findFilmsByKeyword(String keyword);
+	public List<Film> findFilmsByKeyword(String keyword);
 
-	List<Actor> findActorsByFilmId(int filmId);
+	public List<Actor> findActorsByFilmId(int filmId);
+
+	public String findCategoryByFilmId(int filmId);
 
 }

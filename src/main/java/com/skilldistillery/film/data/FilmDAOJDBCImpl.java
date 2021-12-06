@@ -54,6 +54,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 				film.setRating(filmResult.getString("rating"));
 				film.setSpecialFeatures(filmResult.getString("special_features"));
 				film.setActors(findActorsByFilmId(filmId));
+				film.setCategories(findCategoryByFilmId(filmId));
 			} else {
 				return null;
 			}
@@ -147,21 +148,22 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			stmt.setInt(11, film.getId());
 
 			int update = stmt.executeUpdate();
-			conn.commit();
 //			ResultSet keys = stmt.getGeneratedKeys();
 
 			if (update == 1) {
+				conn.commit();
 //				System.out.println("Film " + film.getTitle() + " successfully deleted");
 				conn.close();
 			} else {
 				conn.rollback();
 				conn.close();
+				return null;
 //				System.out.println("Delete unsuccessful, rolling back...");
 			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
-			film = null;
+			return null;
 		}
 		return film;
 		}
@@ -235,6 +237,7 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 
 				Film film = new Film(actors, filmId, title, description, releaseYear, languageId, rentalDuration,
 						rentalRate, length, replacementCost, rating, specialFeatures);
+				film.setCategories(findCategoryByFilmId(filmId));
 //				Film film = new Film(filmId, title, description, releaseYear, languageId, rentalDuration,
 //						rentalRate, length, replacementCost, rating, specialFeatures);
 				
@@ -280,6 +283,29 @@ public class FilmDAOJDBCImpl implements FilmDAO {
 			e.printStackTrace();
 		}
 		return actors;
+	}
+	@Override
+	public String findCategoryByFilmId(int filmId) {
+		String category = "";
+		
+		try {
+			Connection conn = DriverManager.getConnection(URL, user, pass);
+			String sql = "SELECT * FROM category JOIN film_category ON category.id = film_category.category_id WHERE film_id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				category = rs.getString("name");
+				
+			}
+			rs.close();
+			stmt.close();
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return category;
 	}
 	
 }
